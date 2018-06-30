@@ -43,3 +43,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Custom
 gem 'devise', '~> 4.4'
+gem 'slim-rails', '~> 3.1'
