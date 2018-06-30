@@ -1,0 +1,24 @@
+nav.navbar.navbar-expand-sm.navbar-light.bg-light
+  = link_to "単語", root_path, class: "navbar-brand"
+  button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbar-content"
+    span.navbar-toggler-icon
+  #navbar-content.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
+      - if user_signed_in?
+        li.nav-item.dropdown
+          a#navbar-dropdown.nav-link.dropdown-toggle href="#" role="button" data-toggle="dropdown"
+            = current_user.email
+          .dropdown-menu.dropdown-menu-right
+            = link_to "修改信息", edit_user_registration_path, class: "dropdown-item"
+            = link_to "登出", destroy_user_session_path, method: "delete", class: "dropdown-item"
+      - else
+        li.nav-item
+          = link_to "注册", new_user_registration_path, class: "nav-link"
+        li.nav-item
+          = link_to "登录", new_user_session_path, class: "nav-link"
+- if notice
+  .alert.alert-primary role="alert"
+    = notice
+- if alert
+  .alert.alert-danger role="alert"
+    = alert

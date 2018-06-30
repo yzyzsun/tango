@@ -1,40 +1,28 @@
-h2 Edit
-  = resource_name.to_s.humanize
-= form_for resource, as: resource_name, url: registration_path(resource_name), html: { method: :put } do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    div
-      | Currently waiting confirmation for: 
-      = resource.unconfirmed_email
-  .field
-    = f.label :password
-    i
-      | (leave blank if you don't want to change it)
-    br
-    = f.password_field :password, autocomplete: "off"
-    - if @minimum_password_length
-      br
-      em
-        = @minimum_password_length
-        |  characters minimum
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :current_password
-    i
-      | (we need your current password to confirm your changes)
-    br
-    = f.password_field :current_password, autocomplete: "off"
-  .actions
-    = f.submit "Update"
-h3 Cancel my account
-p
-  | Unhappy? 
-  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
-= link_to "Back", :back
+.container
+  .card.devise-card
+    .card-header.bg-primary.text-white 修改信息
+    .card-body
+      = form_for resource, as: resource_name, url: registration_path(resource_name), html: { method: :put } do |f|
+        - unless resource.errors.empty?
+          .alert.alert-danger
+            = devise_error_messages!
+        .form-group
+          = f.label :email, "电子邮箱"
+          = f.email_field :email, class: "form-control", required: true, autofocus: true
+        .form-group
+          = f.label :password, "密码"
+          i （留空则不修改）
+          = f.password_field :password, class: "form-control", minlength: @minimum_password_length
+        .form-group
+          = f.label :password_confirmation, "确认密码"
+          = f.password_field :password_confirmation, class: "form-control", minlength: @minimum_password_length
+        .form-group
+          = f.label :current_password, "当前密码"
+          i （请输入当前密码以验证身份）
+          = f.password_field :current_password, required: true, class: "form-control"
+        .actions
+          = f.submit "提交", class: "btn btn-primary"
+  .card.devise-card
+    .card-header.bg-warning 账号操作
+    .card-body
+      = button_to "删除账号", registration_path(resource_name), class: "btn btn-danger", data: { confirm: "确认删除账号吗？" }, method: "delete"

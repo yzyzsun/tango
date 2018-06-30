@@ -13,3 +13,28 @@
  */
 
 @import "bootstrap";
+
+#error_explanation {
+  h2 {
+    font-size: 1rem;
+  }
+  ul {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+  }
+}
+
+.field_with_errors {
+  display: inline;
+  input {
+    @extend .is-invalid;
+  }
+}
+
+.devise-card {
+  max-width: 500px;
+  margin: 50px auto;
+  .card-header {
+    font-size: 1.6rem;
+  }
+}
