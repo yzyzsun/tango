@@ -42,6 +42,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Custom
+gem 'csv'
 gem 'rails-i18n'
 gem 'devise', '~> 4.4'
 gem 'slim-rails', '~> 3.1'

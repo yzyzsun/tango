@@ -57,6 +57,7 @@ GEM
     byebug (10.0.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    csv (3.0.0)
     devise (4.4.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -193,6 +194,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.1)
   byebug
+  csv
   devise (~> 4.4)
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3)
