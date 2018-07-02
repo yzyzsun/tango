@@ -1,0 +1,22 @@
+.container
+  nav.page-title
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to "首页", root_path
+      li.breadcrumb-item
+        = link_to "单词本", books_path
+      li.breadcrumb-item.active
+        = @book.title
+  .row
+    .col-sm-3
+      = image_tag @book.image_url
+      p.book-description
+        b = @book.description
+    .col-sm-5.offset-sm-2
+      h1 = @word.text
+      p.d-none.second-stage = @word.pronunciation
+      p.d-none.second-stage = @word.translation
+      button.btn.btn-secondary.first-stage[type="button" onclick="stage()"] 查看释义
+      a.btn.btn-success.d-none.second-stage[href="#"] 记住了
+      a.btn.btn-danger.d-none.second-stage[href="#"] 没记住
+      a.btn.btn-primary.float-right.d-none.second-stage[href="#"] 加入我的词库

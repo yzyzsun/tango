@@ -16,3 +16,8 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+function stage() {
+  $('.first-stage').addClass('d-none');
+  $('.second-stage').removeClass('d-none');
+}
