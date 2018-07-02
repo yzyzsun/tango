@@ -1,15 +1,19 @@
-p#notice = notice
-
-p
-  strong Title:
-  = @book.title
-p
-  strong Description:
-  = @book.description
-p
-  strong Image url:
-  = @book.image_url
-
-=> link_to 'Edit', edit_book_path(@book)
-'|
-=< link_to 'Back', books_path
+.container
+  .h1.page-title = @book.title
+  .row.justify-content-between
+    .col-sm-3
+      = image_tag @book.image_url
+      p.book-description = @book.description
+    .col-sm-8
+      table.table.table-hover
+        thead
+          tr
+            th[scope="col"] 单词
+            th[scope="col"] 读音
+            th[scope="col"] 翻译
+        tbody
+          - @words.each do |word|
+            tr
+              td = word.text
+              td = word.pronunciation
+              td = word.translation

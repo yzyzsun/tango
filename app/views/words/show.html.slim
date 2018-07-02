@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Text:
+  = @word.text
+p
+  strong Pronunciation:
+  = @word.pronunciation
+p
+  strong Translation:
+  = @word.translation
+p
+  strong Book:
+  = @word.book
+
+=> link_to 'Edit', edit_word_path(@word)
+'|
+=< link_to 'Back', words_path

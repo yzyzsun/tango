@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   resources :books, only: [:index, :show]
+  resources :words
 end
