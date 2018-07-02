@@ -5,13 +5,16 @@
         = link_to "首页", root_path
       li.breadcrumb-item
         = link_to "单词本", books_path
+      li.breadcrumb-item
+        = link_to @book.title, @book
       li.breadcrumb-item.active
-        = @book.title
+        | 学习
   .row
     .col-sm-3
       = image_tag @book.image_url
       p.book-description
         b = @book.description
+      = link_to "返回", @book, class: "btn btn-block btn-secondary"
     .col-sm-5.offset-sm-2
       h1 = @word.text
       p.d-none.second-stage = @word.pronunciation

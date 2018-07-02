@@ -5,34 +5,29 @@
         = link_to "首页", root_path
       li.breadcrumb-item
         = link_to "单词本", books_path
+      li.breadcrumb-item
+        = link_to @book.title, @book
       li.breadcrumb-item.active
-        = @book.title
+        | 复习
   .row.justify-content-between
     .col-sm-3
-      = image_tag @book.image_url, class: "rounded"
+      = image_tag @book.image_url
       p.book-description
         b = @book.description
-        | （#{page_entries_info @words}）
-      - unless @book.user
-        = link_to "开始学习", learn_path(@book), class: "btn btn-block btn-dark"
-        = link_to "快速复习", review_path(@book), class: "btn btn-block btn-secondary"
+        | （已学习 #{@words.count} 个单词）
+      = link_to "返回", @book, class: "btn btn-block btn-secondary"
     .col-sm-8
-      - if @book.user
-        = link_to "添加单词", new_book_word_path(@book), class: "btn btn-primary btn-add-word"
       table.table.table-hover
         thead
           tr
             th[scope="col"] = Word.human_attribute_name "text"
             th[scope="col"] = Word.human_attribute_name "pronunciation"
             th[scope="col"] = Word.human_attribute_name "translation"
-            - if @book.user
-              th[scope="col"]
+            th[scope="col"] 上次学习时间
         tbody
           - @words.each do |word|
             tr
               td = word.text
               td = word.pronunciation
               td = word.translation
-              - if @book.user
-                td = button_to "删除", [@book, word], method: "delete", class: "btn btn-danger", data: { confirm: "确认删除单词吗？" }
-      = paginate @words
+              td = time_ago_in_words word.records.find_by_user_id(current_user).time
