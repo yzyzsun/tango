@@ -1,0 +1,17 @@
+zh-CN:
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "没有任何%{entry_name}"
+          one: "显示 1 个%{entry_name}"
+          other: "显示全部 %{count} 个%{entry_name}"
+      more_pages:
+        display_entries: "显示 %{total} 个%{entry_name}中的第 %{first}&nbsp;-&nbsp;%{last} 个"

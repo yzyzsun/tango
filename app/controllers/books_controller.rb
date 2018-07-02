@@ -9,6 +9,6 @@ class BooksController < ApplicationController
   # GET /books/1
   def show
     @book = Book.find(params[:id])
-    @words = @book.words
+    @words = @book.words.page params[:page]
   end
 end

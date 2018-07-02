@@ -1,19 +1,29 @@
 .container
-  .h1.page-title = @book.title
+  nav.page-title
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to "首页", root_path
+      li.breadcrumb-item
+        = link_to "单词本", books_path
+      li.breadcrumb-item.active
+        = @book.title
   .row.justify-content-between
     .col-sm-3
       = image_tag @book.image_url
-      p.book-description = @book.description
+      p.book-description
+        b = @book.description
+        | （#{page_entries_info @words}）
     .col-sm-8
       table.table.table-hover
         thead
           tr
-            th[scope="col"] 单词
-            th[scope="col"] 读音
-            th[scope="col"] 翻译
+            th[scope="col"] = Word.human_attribute_name "text"
+            th[scope="col"] = Word.human_attribute_name "pronunciation"
+            th[scope="col"] = Word.human_attribute_name "translation"
         tbody
           - @words.each do |word|
             tr
               td = word.text
               td = word.pronunciation
               td = word.translation
+      = paginate @words

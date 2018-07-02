@@ -2,9 +2,14 @@ zh-CN:
   activerecord:
     models:
       user: 用户
+      word: 单词
     attributes:
       user:
         email: 电子邮箱
         password: 密码
         password_confirmation: 确认密码
         current_password: 当前密码
+      word:
+        text: 单词
+        pronunciation: 读音
+        translation: 翻译
