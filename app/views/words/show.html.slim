@@ -19,4 +19,8 @@
       button.btn.btn-secondary.first-stage[type="button" onclick="stage()"] 查看释义
       a.btn.btn-success.d-none.second-stage[href="#"] 记住了
       a.btn.btn-danger.d-none.second-stage[href="#"] 没记住
-      a.btn.btn-primary.float-right.d-none.second-stage[href="#"] 加入我的词库
+      = form_for @custom_word, url: book_words_path(@custom_book), remote: true, html: { class: "d-inline" } do |f|
+        = f.hidden_field :text
+        = f.hidden_field :pronunciation
+        = f.hidden_field :translation
+        = f.submit "加入我的词库", id: "add-to-custom-book", class: "btn btn-primary float-right d-none second-stage #{"disabled" if @exist}"
