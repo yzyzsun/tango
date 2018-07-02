@@ -1,5 +1,5 @@
 .container
   .jumbotron
-    .display-4 欢迎！
-    p.lead ……
-    = link_to "开始单词之旅", new_user_session_path, class: "btn btn-primary"
+    h1.display-4 欢迎！
+    p.lead 提供单词背诵计划、快速复习、个性词库等功能，助您轻松扩充词汇量
+    = link_to "开始单词之旅", user_signed_in? ? books_path : new_user_session_path, class: "btn btn-primary"

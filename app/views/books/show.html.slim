@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @book.title
+p
+  strong Description:
+  = @book.description
+p
+  strong Image url:
+  = @book.image_url
+
+=> link_to 'Edit', edit_book_path(@book)
+'|
+=< link_to 'Back', books_path

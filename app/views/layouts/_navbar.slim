@@ -9,6 +9,7 @@ nav.navbar.navbar-expand-sm.navbar-light.bg-light
           a#navbar-dropdown.nav-link.dropdown-toggle href="#" role="button" data-toggle="dropdown"
             = current_user.email
           .dropdown-menu.dropdown-menu-right
+            = link_to "我的单词本", books_path, class: "dropdown-item"
             = link_to "修改信息", edit_user_registration_path, class: "dropdown-item"
             = link_to "登出", destroy_user_session_path, method: "delete", class: "dropdown-item"
       - else

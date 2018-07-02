@@ -1,0 +1,9 @@
+.container
+  h1.page-title 单词本
+  - @books.each do |book|
+    .card.book-card
+      = image_tag book.image_url, class: "card-img-top"
+      .card-body
+        h5.card-title = book.title
+        p.card-text = book.description
+        = link_to "开始学习", book, class: "btn btn-primary"
