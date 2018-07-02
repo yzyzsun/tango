@@ -1,6 +1,6 @@
 class WordsController < ApplicationController
   before_action :set_book
-  before_action :set_word, only: [:show, :destroy]
+  before_action :set_word, only: [:show, :destroy, :record]
   before_action :authenticate_user!
   before_action :authenticate_book_ownership!, only: [:new, :create, :destroy]
 
@@ -37,6 +37,22 @@ class WordsController < ApplicationController
   def destroy
     @word.destroy
     redirect_to @book, notice: "单词删除成功！"
+  end
+
+  # POST /records/1
+  def record
+    if params[:remembered]
+      record = @word.records.find_by_user_id current_user
+      if record
+        record.time = Time.now
+        record.save
+      else
+        @word.records.create user: current_user, time: Time.now
+      end
+    end
+    words = @book.words.find_all { |w| w.records.none? { |r| r.user == current_user } }
+    next_word = words.sample
+    redirect_to [@book, next_word]
   end
 
   private

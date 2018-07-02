@@ -17,8 +17,8 @@
       p.d-none.second-stage = @word.pronunciation
       p.d-none.second-stage = @word.translation
       button.btn.btn-secondary.first-stage[type="button" onclick="stage()"] 查看释义
-      a.btn.btn-success.d-none.second-stage[href="#"] 记住了
-      a.btn.btn-danger.d-none.second-stage[href="#"] 没记住
+      = link_to "记住了", record_path(@word, book_id: @book, remembered: true), method: "post", class: "btn btn-success d-none second-stage"
+      = link_to "没记住", record_path(@word, book_id: @book), method: "post", class: "btn btn-danger d-none second-stage"
       = form_for @custom_word, url: book_words_path(@custom_book), remote: true, html: { class: "d-inline" } do |f|
         = f.hidden_field :text
         = f.hidden_field :pronunciation
