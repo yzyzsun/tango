@@ -13,13 +13,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super do |user|
       next unless user.persisted?
-      user.books.create(
+      user.build_book(
         title: "我的词库",
         description: "方便快捷地定制自己的个性化词库",
-        image_url: "shebang.png",
-        editable: true
+        image_url: "shebang.png"
       )
-      user.books << Book.find_by_title("CET4")
     end
   end
 
