@@ -1,5 +1,36 @@
-h1 New word
-
-== render 'form'
-
-= link_to 'Back', words_path
+.container
+  nav.page-title
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to "首页", root_path
+      li.breadcrumb-item
+        = link_to "单词本", books_path
+      li.breadcrumb-item
+        = link_to @book.title, @book
+      li.breadcrumb-item.active
+        | 添加单词
+  .row
+    .col-sm-3
+      = image_tag @book.image_url
+      p.book-description
+        b = @book.description
+    .col-sm-5.offset-sm-2
+      = form_for [@book, @word] do |f|
+        - if @word.errors.any?
+          .alert.alert-danger
+            #error_explanation
+              h2 = I18n.t "errors.messages.not_saved", count: @word.errors.count, resource: @word.class.model_name.human.downcase
+              ul
+                - @word.errors.full_messages.each do |message|
+                  li = message
+        .form-group
+          = f.label :text
+          = f.text_field :text, class: "form-control", required: true
+        .form-group
+          = f.label :pronunciation
+          = f.text_field :pronunciation, class: "form-control"
+        .form-group
+          = f.label :translation
+          = f.text_field :translation, class: "form-control"
+        .actions
+          = f.submit class: "btn btn-primary"

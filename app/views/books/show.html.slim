@@ -14,16 +14,22 @@
         b = @book.description
         | （#{page_entries_info @words}）
     .col-sm-8
+      - if @book.editable
+        = link_to "添加单词", new_book_word_path(@book), class: "btn btn-primary btn-add-word"
       table.table.table-hover
         thead
           tr
             th[scope="col"] = Word.human_attribute_name "text"
             th[scope="col"] = Word.human_attribute_name "pronunciation"
             th[scope="col"] = Word.human_attribute_name "translation"
+            - if @book.editable
+              th[scope="col"]
         tbody
           - @words.each do |word|
             tr
               td = word.text
               td = word.pronunciation
               td = word.translation
+              - if @book.editable
+                td = button_to "删除", [@book, word], method: "delete", class: "btn btn-danger", data: { confirm: "确认删除单词吗？" }
       = paginate @words

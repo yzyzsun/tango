@@ -1,68 +1,37 @@
 class WordsController < ApplicationController
-  before_action :set_word, only: [:show, :edit, :update, :destroy]
+  before_action :set_book
+  before_action :set_word, only: [:show, :destroy]
 
-  # GET /words
-  # GET /words.json
-  def index
-    @words = Word.all
-  end
-
-  # GET /words/1
-  # GET /words/1.json
+  # GET /books/1/words/1
   def show
   end
 
-  # GET /words/new
+  # GET /books/1/words/new
   def new
-    @word = Word.new
+    @word = @book.words.build
   end
 
-  # GET /words/1/edit
-  def edit
-  end
-
-  # POST /words
-  # POST /words.json
+  # POST /books/1/words
   def create
-    @word = Word.new(word_params)
-
-    respond_to do |format|
-      if @word.save
-        format.html { redirect_to @word, notice: 'Word was successfully created.' }
-        format.json { render :show, status: :created, location: @word }
-      else
-        format.html { render :new }
-        format.json { render json: @word.errors, status: :unprocessable_entity }
-      end
+    @word = @book.words.build(word_params)
+    if @word.save
+      redirect_to @book, notice: "单词添加成功！"
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /words/1
-  # PATCH/PUT /words/1.json
-  def update
-    respond_to do |format|
-      if @word.update(word_params)
-        format.html { redirect_to @word, notice: 'Word was successfully updated.' }
-        format.json { render :show, status: :ok, location: @word }
-      else
-        format.html { render :edit }
-        format.json { render json: @word.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /words/1
-  # DELETE /words/1.json
+  # DELETE /books/1/words/1
   def destroy
     @word.destroy
-    respond_to do |format|
-      format.html { redirect_to words_url, notice: 'Word was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to @book, notice: "单词删除成功！"
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def set_book
+      @book = Book.find(params[:book_id])
+    end
+
     def set_word
       @word = Word.find(params[:id])
     end

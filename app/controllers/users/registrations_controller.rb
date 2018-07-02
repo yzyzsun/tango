@@ -16,7 +16,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       user.books.create(
         title: "我的词库",
         description: "方便快捷地定制自己的个性化词库",
-        image_url: "shebang.png"
+        image_url: "shebang.png",
+        editable: true
       )
       user.books << Book.find_by_title("CET4")
     end

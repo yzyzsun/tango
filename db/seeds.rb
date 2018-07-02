@@ -8,7 +8,7 @@
 
 require "csv"
 
-cet4 = Book.create title: "CET4", description: "全国大学英语四级考试大纲词汇", image_url: "cet4.png"
+cet4 = Book.create title: "CET4", description: "全国大学英语四级考试大纲词汇", image_url: "cet4.png", editable: false
 csv = CSV.parse File.read Rails.root.join('db', "cet4.csv")
 csv.each do |row|
   word = cet4.words.build
