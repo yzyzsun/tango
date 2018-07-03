@@ -17,6 +17,15 @@
           = f.label :password_confirmation
           = f.password_field :password_confirmation, class: "form-control", minlength: @minimum_password_length
         .form-group
+          = f.label :sid
+          = f.text_field :sid, class: "form-control", required: true, pattern: "\\d{10}"
+        .form-group
+          = f.label :name
+          = f.text_field :name, class: "form-control", required: true
+        .form-group
+          = f.label :major
+          = f.text_field :major, class: "form-control", required: true
+        .form-group
           = f.label :current_password
           i （请输入当前密码以验证身份）
           = f.password_field :current_password, required: true, class: "form-control"

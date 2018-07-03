@@ -15,5 +15,14 @@
         .form-group
           = f.label :password_confirmation
           = f.password_field :password_confirmation, class: "form-control", required: true, minlength: @minimum_password_length
+        .form-group
+          = f.label :sid
+          = f.text_field :sid, class: "form-control", required: true, pattern: "\\d{10}"
+        .form-group
+          = f.label :name
+          = f.text_field :name, class: "form-control", required: true
+        .form-group
+          = f.label :major
+          = f.text_field :major, class: "form-control", required: true
         .actions
           = f.submit "注册", class: "btn btn-primary"

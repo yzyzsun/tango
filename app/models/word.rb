@@ -1,5 +1,5 @@
 class Word < ApplicationRecord
-  validates :text, presence: true
+  validates_presence_of :text
   belongs_to :book
   has_many :records
 end

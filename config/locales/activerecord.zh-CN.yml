@@ -10,6 +10,9 @@ zh-CN:
         password_confirmation: 确认密码
         current_password: 当前密码
         remember_me: 记住我
+        sid: 学号
+        name: 姓名
+        major: 专业
       word:
         text: 单词
         pronunciation: 读音
