@@ -8,12 +8,23 @@
 
 require "csv"
 
-cet4 = Book.create title: "CET4", description: "全国大学英语四级考试大纲词汇", image_url: "cet4.png"
-csv = CSV.parse File.read Rails.root.join('db', "cet4.csv")
-csv.each do |row|
-  word = cet4.words.build
-  word.text = row[0]
-  word.pronunciation = row[1]
-  word.translation = row[2]
-  word.save
+def import_csv(book, filename)
+  csv = CSV.parse File.read Rails.root.join("db", filename)
+  csv.each do |row|
+    word = book.words.build
+    word.text = row[0]
+    word.pronunciation = row[1]
+    word.translation = row[2]
+    word.save
+  end
+  puts filename + " imported"
 end
+
+book = Book.create title: "CET4", description: "全国大学英语四级考试词汇", image_url: "cet4.png"
+import_csv book, "cet4.csv"
+
+book = Book.create title: "TOEFL", description: "王玉梅托福词汇表", image_url: "toefl.png"
+import_csv book, "toefl.csv"
+
+book = Book.create title: "JLPT", description: "日语能力测试常见词汇", image_url: "jlpt.png"
+import_csv book, "jlpt.csv"
