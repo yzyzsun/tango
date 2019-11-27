@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       next unless user.persisted?
       user.build_book(
         title: "我的词库",
-        description: "方便快捷地定制自己的个性化词库",
+        description: "定制自己的个性化词库",
         image_url: "shebang.png"
       )
     end
