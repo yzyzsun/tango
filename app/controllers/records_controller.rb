@@ -19,7 +19,9 @@ class RecordsController < ApplicationController
   # GET /books/1/learn
   def learn
     book = Book.find params[:id]
-    unlearned = book.words.reject { |w| w.records.find_by_user_id(current_user) }
+    subquery = Record.where(user: current_user).to_sql
+    unlearned = Word.joins("LEFT JOIN (#{subquery}) AS records ON records.word_id = words.id")
+                    .where(book: book, records: { id: nil })
     word = unlearned.sample
     if word
       redirect_to [book, word]
@@ -31,9 +33,9 @@ class RecordsController < ApplicationController
   # GET /books/1/review
   def review
     @book = Book.find params[:id]
-    @words = @book.words.map { |w| [w, w.records.find_by_user_id(current_user)] }
-                        .find_all { |w_r| w_r.last }
-                        .sort { |x, y| y.last.time <=> x.last.time }
+    @words = Word.includes(:records)
+                 .where(book: @book, records: { user: current_user })
+                 .order("records.id DESC")
     if @words.empty?
       redirect_to @book, notice: "👀 哎呀，目前还没背过任何单词~"
     else

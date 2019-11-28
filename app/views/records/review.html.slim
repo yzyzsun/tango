@@ -26,9 +26,9 @@
             th[scope="col"] = Word.human_attribute_name "translation"
             th[scope="col"] 上次背诵时间
         tbody
-          - @words.each do |w_r|
+          - @words.each do |word|
             tr
-              td = w_r.first.text
-              td = w_r.first.pronunciation
-              td = w_r.first.translation
-              td = time_ago_in_words(w_r.last.time) + "前"
+              td = word.text
+              td = word.pronunciation
+              td = word.translation
+              td = time_ago_in_words(word.records.find_by_user_id(current_user).time) + "前"
