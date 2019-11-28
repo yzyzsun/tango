@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   post "/records/:id", to: "records#record", as: "record"
   get "/books/:id/learn", to: "records#learn", as: "learn"
   get "/books/:id/review", to: "records#review", as: "review"
+  delete "/books/:id/giveup", to: "records#giveup", as: "giveup"
 end

@@ -17,6 +17,7 @@
         | （已学习 #{@words.count} 个单词）
       = link_to "返回", @book, class: "btn btn-block btn-secondary"
     .col-sm-8
+      = button_to "放弃学习进度", giveup_path(@book), method: "delete", class: "btn btn-danger btn-upper-right", data: { confirm: "这会清空所有已背单词，确认要放弃学习进度吗？" }
       table.table.table-hover
         thead
           tr
@@ -25,9 +26,9 @@
             th[scope="col"] = Word.human_attribute_name "translation"
             th[scope="col"] 上次背诵时间
         tbody
-          - @words.each do |word|
+          - @words.each do |w_r|
             tr
-              td = word.text
-              td = word.pronunciation
-              td = word.translation
-              td = time_ago_in_words word.records.find_by_user_id(current_user).time
+              td = w_r.first.text
+              td = w_r.first.pronunciation
+              td = w_r.first.translation
+              td = time_ago_in_words(w_r.last.time) + "前"

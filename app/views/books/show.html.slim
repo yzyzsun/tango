@@ -18,7 +18,7 @@
         = link_to "快速复习", review_path(@book), class: "btn btn-block btn-secondary"
     .col-sm-8
       - if @book.user
-        = link_to "添加单词", new_book_word_path(@book), class: "btn btn-primary btn-add-word"
+        = link_to "添加单词", new_book_word_path(@book), class: "btn btn-primary btn-upper-right"
       table.table.table-hover
         thead
           tr

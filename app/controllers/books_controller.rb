@@ -11,6 +11,6 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     redirect_to books_path, alert: "没有权限查看该单词本！" unless @book.user.nil? || @book.user == current_user
-    @words = @book.words.page params[:page]
+    @words = @book.words.order(:id).page params[:page]
   end
 end

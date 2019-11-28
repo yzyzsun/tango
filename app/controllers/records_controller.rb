@@ -19,7 +19,7 @@ class RecordsController < ApplicationController
   # GET /books/1/learn
   def learn
     book = Book.find params[:id]
-    unlearned = book.words.find_all { |w| w.records.none? { |r| r.user == current_user } }
+    unlearned = book.words.reject { |w| w.records.find_by_user_id(current_user) }
     word = unlearned.sample
     if word
       redirect_to [book, word]
@@ -31,11 +31,20 @@ class RecordsController < ApplicationController
   # GET /books/1/review
   def review
     @book = Book.find params[:id]
-    @words = @book.words.find_all { |w| w.records.any? { |r| r.user == current_user } }
+    @words = @book.words.map { |w| [w, w.records.find_by_user_id(current_user)] }
+                        .find_all { |w_r| w_r.last }
+                        .sort { |x, y| y.last.time <=> x.last.time }
     if @words.empty?
-      redirect_to @book, notice: "👀 诶呀，目前还没有要复习的单词~"
+      redirect_to @book, notice: "👀 哎呀，目前还没背过任何单词~"
     else
       render
     end
+  end
+
+  # DELETE /books/1/giveup
+  def giveup
+    book = Book.find params[:id]
+    current_user.records.each { |r| r.destroy if r.word.book == book }
+    redirect_to book, notice: "1, 2... 空！已经把所有单词忘得干干净净了！"
   end
 end
