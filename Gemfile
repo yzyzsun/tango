@@ -44,7 +44,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Custom
 gem 'csv'
 gem 'rails-i18n'
-gem 'devise', '~> 4.4'
+gem 'devise', '~> 4.7'
 gem 'slim-rails', '~> 3.1'
 gem 'jquery-rails', '~> 4.3'
 gem 'bootstrap', '~> 4.1'
