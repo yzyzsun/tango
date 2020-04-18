@@ -49,3 +49,5 @@ gem 'slim-rails', '~> 3.1'
 gem 'jquery-rails', '~> 4.3'
 gem 'bootstrap', '~> 4.1'
 gem 'kaminari', '~> 1.1'
+
+gem 'pg', group: :production
