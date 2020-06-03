@@ -13,9 +13,9 @@ nav.navbar.navbar-expand-sm.navbar-light.bg-light
             = link_to "修改信息", edit_user_registration_path, class: "dropdown-item"
             = link_to "登出", destroy_user_session_path, method: "delete", class: "dropdown-item"
       - else
-        li.nav-item
+        li class="nav-item #{active_class new_user_registration_path}"
           = link_to "注册", new_user_registration_path, class: "nav-link"
-        li.nav-item
+        li class="nav-item #{active_class new_user_session_path}"
           = link_to "登录", new_user_session_path, class: "nav-link"
 - if notice
   .alert.alert-primary role="alert"
