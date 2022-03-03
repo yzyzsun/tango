@@ -50,4 +50,5 @@ gem 'jquery-rails', '~> 4.3'
 gem 'bootstrap', '~> 4.3'
 gem 'kaminari', '~> 1.2'
 
-gem 'pg', group: :production
+# v1.3.0 removed support for PostgreSQL-9.2
+gem 'pg', '~> 1.2.3', group: :production
