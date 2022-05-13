@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.7.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -44,10 +44,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Custom
 gem 'csv'
 gem 'rails-i18n'
-gem 'devise', '~> 4.4'
+gem 'devise', '~> 4.7'
 gem 'slim-rails', '~> 3.1'
 gem 'jquery-rails', '~> 4.3'
-gem 'bootstrap', '~> 4.1'
-gem 'kaminari', '~> 1.1'
+gem 'bootstrap', '~> 4.3'
+gem 'kaminari', '~> 1.2'
 
-gem 'pg', group: :production
+# v1.3.0 removed support for PostgreSQL-9.2
+gem 'pg', '~> 1.2.3', group: :production
